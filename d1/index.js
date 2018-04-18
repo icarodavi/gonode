@@ -1,5 +1,15 @@
-import express from 'express';
+var express = require('express');
+var nunjucks = require('nunjucks');
+
 const app = express();
+
+nunjucks.configure({
+  autoescape: true,
+  express: app,
+});
+
+app.set();
+
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
