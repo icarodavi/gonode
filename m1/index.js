@@ -5,15 +5,17 @@ const path = require('path');
 const app = express();
 
 nunjucks.configure('views', {
-    autoescape: true,
-    express: app,
+  autoescape: true,
+  express: app,
 });
 
 app.set('view engine', 'njk');
 app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (req, res) => {
-    res.render('index', { nome: 'Ícaro'});
+  res.render('index', {
+    nome: ['Icaro', 'Davi'],
+  });
 });
 
 app.listen(3000);

@@ -4,6 +4,9 @@
     </head>
 
     <body>
-    Olá, {{ nome }}
+
+        {% for item in nome %}
+            Olá, {{ item }}<br />
+        {% endfor %}
     </body>
 </html>
