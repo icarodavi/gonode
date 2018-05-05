@@ -8,7 +8,7 @@ nunjucks.configure({
   express: app,
 });
 
-app.set();
+app.set('view engine', 'njk');
 
 app.get('/', (req, res) => {
   res.send('Hello World');
