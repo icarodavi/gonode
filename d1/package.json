@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e js,json,njk"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +19,8 @@
     "moment": "^2.22.1",
     "momentjs": "^2.0.0",
     "nunjucks": "^3.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
   }
 }

@@ -4,16 +4,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mjs = require('moment');
 
-var idade;
+let idade;
 
 const app = express();
 const checkMiddleware = (req, res, next) => {
-  console.log(req.body);
-  idade = mjs().diff(mjs(req.body.dt_nasc,
-    'DD/MM/YYYY'), 'years');
+  idade = mjs(Date.now()).diff(req.body.dt_nasc, 'years');
   req.body.dt_nasc = mjs(req.body.dt_nasc).format('DD/MM/YYYY');
-    console.log(idade);
-    next();
+  next();
 };
 
 nunjucks.configure('views', {
@@ -34,9 +31,20 @@ app.get('/main', (req, res) => {
   res.render('main');
 });
 
-app.post('/check', checkMiddleware, (req, res) => {
-  res.send(`Olá ${req.body.nome} sua data de nascimento é ${req.body.dt_nasc} sua idade é ${idade}`);
+app.get('/major', (req, res) => {
+  res.render('major');
+});
 
+app.get('/minor', (req, res) => {
+  res.send('minor');
+});
+app.post('/check', checkMiddleware, (req, res) => {
+  if (idade > 18) {
+    console.log(req.body);
+    res.redirect('/major');
+  } else {
+    res.redirect('/minor');
+  }
 });
 
 app.listen(3000);
