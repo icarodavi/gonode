@@ -1,9 +1,10 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const path = require('path');
+
 const app = express();
 
-nunjucks.configure({
+nunjucks.configure('views', {
   autoescape: true,
   express: app,
 });
@@ -16,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/main', (req, res) => {
-  res.render('index');
+  res.render('main');
 });
 
 app.listen(3000);
