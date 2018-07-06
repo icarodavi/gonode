@@ -26,4 +26,10 @@ routesAPI.put('/users', controllers.userController.update);
 routesAPI.post('/tweets', controllers.tweetController.create);
 routesAPI.delete('/tweets/:id', controllers.tweetController.destroy);
 
+/** 
+* Likes
+*/
+
+routesAPI.post('/like/:id', controllers.likeController.toggle);
+
 module.exports = routesAPI;
