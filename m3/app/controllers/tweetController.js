@@ -14,8 +14,8 @@ module.exports = {
   },
   async destroy(req, res, next) {
     try {
-      await Tweet.destroy({ id: req.id });
-      return res.send(`deleted: ${req.id}`);
+      await Tweet.findByIdAndRemove(req.params.id);
+      return res.send(`deleted: ${req.params.id}`);
     } catch (err) {
       return next(err);
     }

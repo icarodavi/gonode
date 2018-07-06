@@ -14,11 +14,16 @@ routesAPI.post('/signin', controllers.authController.signin);
  * Auth roles
  */
 routesAPI.use(authMiddleware);
+
+/**
+ * User
+ */
+routesAPI.put('/users', controllers.userController.update);
 /** **
   Tweets
  */
 
 routesAPI.post('/tweets', controllers.tweetController.create);
-routesAPI.delete('/tweets/:id', controllers.tweetController.create);
+routesAPI.delete('/tweets/:id', controllers.tweetController.destroy);
 
 module.exports = routesAPI;
