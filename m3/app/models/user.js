@@ -39,7 +39,7 @@ UserSchema.methods = {
     return await bcrypt.compare(password, this.password);
   },
   generateToken() {
-    return jwt.sign({ id: this.id }, authConfig.secret, {
+    return jwt.sign({ id: this.id, email: this.email }, authConfig.secret, {
       expiresIn: 86400
     });
   }
