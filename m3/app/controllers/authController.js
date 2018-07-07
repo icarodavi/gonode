@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+
 const User = mongoose.model('User');
+const sendMail = require('../services/mailer');
 
 module.exports = {
   async signup(req, res, next) {
@@ -9,6 +11,16 @@ module.exports = {
         return res.status(400).json({ error: 'User already exists!' });
       }
       const user = await User.create(req.body);
+      await sendMail({
+        from: 'Módulo 03 <mod03@oi.com.br>',
+        to: user.email,
+        subject: `Seja bem vindo ao Módulo 03 ${user.name}`,
+        template: 'auth/register',
+        context: {
+          name: user.name,
+          username: user.username,
+        },
+      });
       return res.status(200).json({ user, token: user.generateToken() });
     } catch (err) {
       return next(err);
@@ -30,5 +42,5 @@ module.exports = {
     } catch (err) {
       next(err);
     }
-  }
+  },
 };

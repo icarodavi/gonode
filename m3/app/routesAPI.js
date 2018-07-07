@@ -19,16 +19,24 @@ routesAPI.use(authMiddleware);
  * User
  */
 routesAPI.put('/users', controllers.userController.update);
+routesAPI.get('/users/me', controllers.userController.me);
+routesAPI.get('/feed', controllers.userController.feed);
+/**
+ * Follow
+ */
+routesAPI.post('/follow/:id', controllers.followController.create);
+routesAPI.post('/unfollow/:id', controllers.followController.destroy);
+
 /** **
-  Tweets
+Tweets
  */
 
 routesAPI.post('/tweets', controllers.tweetController.create);
 routesAPI.delete('/tweets/:id', controllers.tweetController.destroy);
 
-/** 
-* Likes
-*/
+/**
+ * Likes
+ */
 
 routesAPI.post('/like/:id', controllers.likeController.toggle);
 
